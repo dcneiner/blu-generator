@@ -1,0 +1,52 @@
+{
+  "name": "blu-generator",
+  "version": "0.1.0",
+  "description": "A convention driven approach to yeoman generators",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeanKit-Labs/blu-generator"
+  },
+  "keywords": [
+    "generator",
+    "yeoman"
+  ],
+  "author": "LeanKit",
+  "contributors": [
+    {
+      "name": "Alex Robson",
+      "url": "http://nerdventure.io"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeanKit-Labs/blu-generator/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "homepage": "https://github.com/LeanKit-Labs/blu-generator",
+  "devDependencies": {
+    "biggulp": "~0.0.2",
+    "chai": "^2.1.1",
+    "chai-as-promised": "^4.3.0",
+    "gulp": "^3.8.11",
+    "proxyquire": "^1.4.0",
+    "rimraf": "^2.3.3",
+    "sinon": "^1.14.1",
+    "sinon-as-promised": "^3.0.0",
+    "sinon-chai": "^2.7.0"
+  },
+  "dependencies": {
+    "class-extend": "^0.1.1",
+    "drudgeon": "^0.1.7",
+    "ejs": "^2.3.1",
+    "lodash": "^3.6.0",
+    "mkdirp": "^0.5.0",
+    "when": "^3.7.2",
+    "yeoman-generator": "^0.20.1"
+  }
+}
