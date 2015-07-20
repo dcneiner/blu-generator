@@ -2,22 +2,34 @@
 A set of conventions (based on blu) for [`yeoman-generator`](https://github.com/yeoman/generator). Provides useful features with minimal effort.
 
 ## Example
-The simplest example that could work:
+The simplest example that will work (uses default yo life-cycle triggers for blu methods):
 
 ```javascript
-var blu = require( 'blu-generator' );
+var blu = require( "blu-generator" );
+module.exports = blu.extend( {} );
+```
+
+And when defining yo life-cycle methods, you can call the blu helpers directly (these methods are automatically wired up if the related events are not defined by your generator):
+
+```javascript
+var blu = require( "blu-generator" );
 
 module.exports = blu.extend( {
 	initialize: function() {
+		// ... custom code ...
 		this.init();
 	},
 	prompting: function() {
+		// ... custom code ...
 		this.ask();
+		// ... custom code ...
 	},
 	writing: function() {
+		// ... custom code ...
 		this.writeTemplate();
 	},
 	install: function() {
+		// ... custom code ...
 		this.installDependencies();
 	}
 } );
@@ -26,7 +38,7 @@ module.exports = blu.extend( {
 ## API
 
 ### init()
-Loads the template from the current generator's templates path and sets the resulting data structure on the `blu` property. Call this within the `initialize` step of your generator.
+Loads the template from the current generator's templates path and sets the resulting data structure on the `blu` property. _This is automatically called during `initialize` unless your generator also defines an `initialize` method or section. In that case, call `this.init()` within the `initialize` step of your generator to use this behavior._
 
 ### runBefore()
 Used to execute any before commands set in the `.commands.json` file via `drudgeon`.
@@ -35,10 +47,13 @@ Used to execute any before commands set in the `.commands.json` file via `drudge
 Used to execute any after commands set in the `.commands.json` file via `drudgeon`.
 
 ### ask()
-Sends the prompts specified in the `.prompts.js` file to `inquirer` and then sets the generator's `answer` property to the results.
+Sends the prompts specified in the `.prompts.js` file to `inquirer` and then sets the generator's `answer` property to the results. _This is automatically called during `prompting` unless your generator also defines an `prompting` method or section. In that case, call `this.ask()` within the `prompting` step of your generator to use this behavior._
 
 ### writeTemplate()
-Copies all files from the generator's templates folder to a matching structure in the target, passing any file ending with a `.blu` extension to `lodash`'s template engine before its written.
+Copies all files from the generator's templates folder to a matching structure in the target, passing any file ending with a `.blu` extension to `lodash`'s template engine before its written. _This is automatically called during `writing` unless your generator also defines an `writing` method or section. In that case, call `this.writeTemplate()` within the `writing` step of your generator to use this behavior._
+
+### installDependencies()
+This is not a special blu method, but this yo method it is automatically called during `install` unless your generator also defines an `install` method or section. In that case, call `this.installDependencies()` within the `install` step of your generator to use this behavior.
 
 ## Concepts
 

@@ -6,9 +6,6 @@ var command = require( "./command" );
 var yeo = require( "yeoman-generator" );
 
 var blu = yeo.Base.extend( {
-	constructor: function() {
-		yeo.Base.apply( this, arguments );
-	},
 	init: function() {
 		var done = this.async();
 		template( this.sourceRoot() )
@@ -32,6 +29,9 @@ var blu = yeo.Base.extend( {
 		}
 	},
 	ask: function() {
+		if ( !this.blu.prompts ) {
+			return;
+		}
 		var done = this.async();
 		this.prompt( this.blu.prompts, function( answers ) {
 			this.answers = answers;
@@ -59,6 +59,28 @@ blu.api = {
 	listDirectories: fs.listDirectories
 };
 
-blu.extend = require( "class-extend" ).extend;
+var _extend = blu.extend;
+blu.extend = function ( protoProps, staticProps ) {
+	protoProps = protoProps || {};
+
+	// Only methods on the final generator prototype will run
+	// so we mix our default lifecycle methods
+	// into the new generator prototype if they were
+	// not already defined.
+	_.each( {
+		initializing: "init",
+		prompting: "ask",
+		writing: "writeTemplate",
+		install: "installDependencies"
+	}, function ( method, key ) {
+		if ( !protoProps.hasOwnProperty( key ) ) {
+			protoProps[ key ] = function () {
+				this[ method ]();
+			};
+		}
+	} );
+
+	return _extend.apply( this, [ protoProps, staticProps ] );
+}
 
 module.exports = blu;
