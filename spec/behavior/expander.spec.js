@@ -20,13 +20,7 @@ var fs = {
 	write: write
 };
 
-var expand = proxyquire( "../src/expander", {
-	mkdirp: {
-		sync: function() {
-			return when.resolve();
-		}
-	}
-} );
+var expand = proxyquire( "../src/expander", {} );
 
 describe( "Expanding Templates", function() {
 	var files;

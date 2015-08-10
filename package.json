@@ -46,11 +46,9 @@
     "sinon-chai": "^2.7.0"
   },
   "dependencies": {
-    "class-extend": "^0.1.1",
     "drudgeon": "^0.1.7",
     "ejs": "^2.3.1",
     "lodash": "^3.6.0",
-    "mkdirp": "^0.5.0",
     "when": "^3.7.2",
     "yeoman-generator": "^0.20.1"
   }
