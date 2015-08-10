@@ -1,6 +1,6 @@
 {
   "name": "blu-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A convention driven approach to yeoman generators",
   "main": "src/index.js",
   "scripts": {
@@ -19,6 +19,11 @@
     {
       "name": "Alex Robson",
       "url": "http://nerdventure.io"
+    },
+    {
+      "name": "Doug Neiner",
+      "email": "doug@dougneiner.com",
+      "url": "http://code.dougneiner.com"
     }
   ],
   "license": "MIT",
